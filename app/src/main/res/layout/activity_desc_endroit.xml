@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:id="@+id/collapsingtoolbar_id"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            app:title="Anime Title"
+            app:title="My Title"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleMarginEnd="15dp"
