@@ -1,0 +1,51 @@
+<resources>
+<string name="app_name">EasyTouriste</string>
+
+<string name="navigation_drawer_open">open</string>
+<string name="navigation_drawer_close">close</string>
+<string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+<string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+
+    <!--Menu principal -->
+    <string name="acceuil">Home</string>
+    <string name="hebergement">Accommodation</string>
+    <string name="a_visiter">To visit</string>
+    <string name="deplacement">Travel</string>
+    <string name="aide">Help</string>
+    <string name="contact_nous">Contact us</string>
+    <string name="a_faire">To do</string>
+    <string name="restauration">Restoration</string>
+    <string name="meteo">Weather</string>
+    <string name="suivez_nous">Follow us</string>
+
+
+    <!--Menu secondaire -->
+    <string name="hotel">hotel</string>
+    <string name="auberge">hostel</string>
+
+
+    <!--a visiter -->
+    <string name="site_touristique">Touristic site</string>
+    <string name="sites_naturels">Natural Park</string>
+    <string name="musee">Museum</string>
+    <string name="art">Art Gallery</string>
+    <!--deplacement -->
+    <string name="location">Rent-a-car</string>
+    <string name="ligne_aerienne">Airline</string>
+    <!--restoration -->
+    <string name="restaurant">Restaurant</string>
+    <string name="patisserie">Pastry</string>
+    <!--A faire -->
+    <string name="plage">Beach</string>
+    <string name="chute">waterfall</string>
+
+    <!--bottom menu-->
+    <string name="menu_tous">All</string>
+    <string name="menu_meilleurs">Most visited</string>
+    <string name="menu_favoris">Favorites</string>
+
+
+
+
+
+</resources>

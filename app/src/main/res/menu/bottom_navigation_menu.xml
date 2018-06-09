@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      >
+
+
+        <item
+            android:id="@+id/display_all"
+            android:icon="@drawable/ic_action_all"
+            android:title="@string/menu_tous"
+            />
+        <item
+            android:id="@+id/display_most_visited"
+            android:icon="@drawable/ic_action_best"
+            android:title="@string/menu_meilleurs"
+            />
+        <item
+            android:id="@+id/display_favorite"
+            android:icon="@drawable/ic_action_favorite"
+            android:title="@string/menu_favoris"
+            />
+
+
+
+
+</menu>

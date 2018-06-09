@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EasyTouriste</string>
+
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="path_fr">http://192.168.15.210/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+
+
+</resources>
