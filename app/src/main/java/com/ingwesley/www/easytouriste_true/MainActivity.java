@@ -160,10 +160,11 @@ public class MainActivity extends AppCompatActivity {
         listDataHeader.add(deplacement);
         listDataHeader.add(a_visiter);
         listDataHeader.add(a_faire);
+        listDataHeader.add(meteo);
         listDataHeader.add(contact_nous);
 
         listDataHeader.add(suivez_nous);
-        listDataHeader.add(meteo);
+
 
 
         List<String> Acceuil = new ArrayList<>();
