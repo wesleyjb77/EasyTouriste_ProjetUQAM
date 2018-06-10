@@ -1,5 +1,6 @@
 package com.ingwesley.www.easytouriste_true;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class splash extends AppCompatActivity {
             public void run() {
              progressBar.setVisibility(View.GONE);
             timer.cancel();
+
             }
         };
         timer=new Timer();
@@ -36,8 +38,11 @@ public class splash extends AppCompatActivity {
             @Override
             public void run() {
             handler.post(runnable);
+               Intent i=new Intent(splash.this, MainActivity.class);
+                startActivity(i);
+                splash.this.finish();
             }
-        },10000,100);
+        },1000,100);
     }
 
 
