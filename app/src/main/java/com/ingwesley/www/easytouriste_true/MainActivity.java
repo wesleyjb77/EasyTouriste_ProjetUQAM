@@ -204,9 +204,10 @@ public class MainActivity extends AppCompatActivity {
         listHash.put(listDataHeader.get(3), Deplacement);
         listHash.put(listDataHeader.get(4), avisiter);
         listHash.put(listDataHeader.get(5), afaire);
-        listHash.put(listDataHeader.get(6), suivezNous);
-        listHash.put(listDataHeader.get(7), Contact_nous);
-        listHash.put(listDataHeader.get(8), Meteo);
+        listHash.put(listDataHeader.get(6), Meteo);
+        listHash.put(listDataHeader.get(7), suivezNous);
+        listHash.put(listDataHeader.get(8), Contact_nous);
+
 
 
 
