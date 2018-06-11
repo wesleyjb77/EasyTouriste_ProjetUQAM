@@ -158,8 +158,8 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
     public void onResume(){
         super.onResume();
         //listEndroit = new ArrayList<>();
-        listEndroit.removeAll(listEndroit);
-        load_data_from_server(0);
+        //listEndroit.removeAll(listEndroit);
+        //load_data_from_server(0);
         //searchView.setIconified(true);
         resetSearch();
     }
