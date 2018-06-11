@@ -41,7 +41,7 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
     private List<ModelEndroits> listEndroitFav;
     Listing_All_Adapter adapter;
     FragmentActivity c;
-
+// screen not refresh on resume but in case we change the stared assignment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycle_all, container, false);
 
@@ -120,6 +120,14 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         super.onCreateOptionsMenu(menu, inflater);
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        //listEndroit = new ArrayList<>();
+        load_data_from_server(0);
+        //searchView.setIconified(true);
+        resetSearch();
+    }
 
 
     private void load_data_from_server(int id) {
@@ -132,6 +140,7 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
                 Request request = new Request.Builder()
                         .url(path)
                         .build();
+                listEndroitFav.removeAll(listEndroitFav);
                 try {
                     Response response = client.newCall(request).execute();
 
