@@ -15,7 +15,9 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.ingwesley.www.easytouriste_true.All_Adapters.ExpandableAdapter;
@@ -28,7 +30,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public String hotel;
     private DrawerLayout mDrawerLayout;
     ExpandableListView mListView;
     RelativeLayout rl_menu;
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         String restauration=getString(R.string.restauration);
         String meteo = getString(R.string.meteo);
         String suivez_nous = getString(R.string.suivez_nous);
-        String hotel = getString(R.string.hotel);
+       hotel = getString(R.string.hotel);
         String auberge = getString(R.string.auberge);
         String site_touristique = getString(R.string.site_touristique);
         String sites_naturels = getString(R.string.sites_naturels);
@@ -238,11 +240,31 @@ public class MainActivity extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
 
+final String item = (String) listHash.get(listDataHeader.get(groupPosition)).get(childPosition);
+if(item.equals(hotel)){
+    Toast.makeText(getApplicationContext(),
+            listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
+
+
+}
+
+/*
+                Toast.makeText(getApplicationContext(),
+                        listDataHeader.get(groupPosition)
+                                + " > "
+                + listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
+
+*/
+
+
+
+/*
                 Intent myIntent = new Intent(MainActivity.this,MainListing.class);
                 //myIntent.putExtra("key", value); //Optional parameters
                 MainActivity.this.startActivity(myIntent);
 
                 mDrawerLayout.closeDrawer(Gravity.LEFT);
+                */
 
                 return false;
 

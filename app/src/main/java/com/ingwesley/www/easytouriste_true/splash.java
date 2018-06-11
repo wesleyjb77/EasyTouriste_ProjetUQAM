@@ -42,7 +42,7 @@ public class splash extends AppCompatActivity {
                 startActivity(i);
                 splash.this.finish();
             }
-        },10000,100);
+        },1000,100);
     }
 
 
