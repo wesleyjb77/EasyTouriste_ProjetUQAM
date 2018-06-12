@@ -44,6 +44,5 @@ public class splash extends AppCompatActivity {
             }
         },1000,100);
     }
-
-
+// probleme with the splash
 }

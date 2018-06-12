@@ -1,13 +1,17 @@
 package com.ingwesley.www.easytouriste_true;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,6 +35,27 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public String hotel;
+    String acceuil;
+    String hebergement;
+    String a_visiter;
+    String deplacement;
+    //String aide =getString(R.string.aide);
+    String contact_nous;
+    String a_faire;
+    String restauration;
+    String meteo;
+    String suivez_nous;
+    String auberge;
+    String site_touristique;
+    String sites_naturels;
+    String musee;
+    String location;
+    String ligne_aerienne;
+    String restaurant;
+    String patisserie ;
+    String plage;
+    String art;
+    String chute;
     private DrawerLayout mDrawerLayout;
     ExpandableListView mListView;
     RelativeLayout rl_menu;
@@ -45,15 +70,19 @@ public class MainActivity extends AppCompatActivity {
     private Button mprev;
     private Button mNext;
     public int mCurPg;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e(TAG, "Destroy");
-
+       toolbar = (Toolbar) findViewById(R.id.toolbarMain);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+        toolbar.setNavigationIcon(R.drawable.menu_icon);
        // getSupportActionBar().hide();
-       rl_menu = findViewById(R.id.rl_menu);
+      // rl_menu = findViewById(R.id.rl_menu);
         mListView = findViewById(R.id.activity_expandable_list_view);
         initData();
         mlistAdapter = new ExpandableAdapter(MainActivity.this, listDataHeader, listHash);
@@ -85,13 +114,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+/*
         rl_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mDrawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+        */
     }
 
 
@@ -129,32 +159,42 @@ public class MainActivity extends AppCompatActivity {
         listView.requestLayout();
 
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
+
+
+        return true;
+    }
     private void initData() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
-        String acceuil =getResources().getString(R.string.acceuil);
-        String hebergement = getString(R.string.hebergement);
-        String a_visiter =getString(R.string.a_visiter);
-        String deplacement =getString(R.string.deplacement);
+       acceuil =getResources().getString(R.string.acceuil);
+        hebergement = getString(R.string.hebergement);
+        a_visiter =getString(R.string.a_visiter);
+       deplacement =getString(R.string.deplacement);
         //String aide =getString(R.string.aide);
-        String contact_nous =getString(R.string.contact_nous);
-        String a_faire =getString(R.string.a_faire);
-        String restauration=getString(R.string.restauration);
-        String meteo = getString(R.string.meteo);
-        String suivez_nous = getString(R.string.suivez_nous);
-       hotel = getString(R.string.hotel);
-        String auberge = getString(R.string.auberge);
-        String site_touristique = getString(R.string.site_touristique);
-        String sites_naturels = getString(R.string.sites_naturels);
-        String musee = getString(R.string.musee);
-        String location=getString(R.string.location);
-        String ligne_aerienne = getString(R.string.ligne_aerienne);
-        String restaurant=getString(R.string.restaurant);
-        String patisserie = getString(R.string.patisserie);
-        String plage = getString(R.string.plage);
-        String art=getString(R.string.art);
-        String chute =getString(R.string.chute);
+        contact_nous =getString(R.string.contact_nous);
+      a_faire =getString(R.string.a_faire);
+        restauration=getString(R.string.restauration);
+        meteo = getString(R.string.meteo);
+        suivez_nous = getString(R.string.suivez_nous);
+          hotel = getString(R.string.hotel);
+        auberge = getString(R.string.auberge);
+        site_touristique = getString(R.string.site_touristique);
+        sites_naturels = getString(R.string.sites_naturels);
+        musee = getString(R.string.musee);
+        location=getString(R.string.location);
+       ligne_aerienne = getString(R.string.ligne_aerienne);
+        restaurant=getString(R.string.restaurant);
+      patisserie = getString(R.string.patisserie);
+       plage = getString(R.string.plage);
+         art=getString(R.string.art);
+        chute =getString(R.string.chute);
 
         listDataHeader.add(acceuil);
         listDataHeader.add(hebergement);
@@ -241,6 +281,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 final String item = (String) listHash.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+
+
+
 if(item.equals(hotel)){
     Toast.makeText(getApplicationContext(),
             listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();

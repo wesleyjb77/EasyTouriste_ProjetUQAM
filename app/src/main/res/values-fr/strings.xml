@@ -7,7 +7,7 @@
     <string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
 
     <!--Menu principal -->
-    <string name="acceuil">acceuil</string>
+    <string name="acceuil">Acceuil</string>
     <string name="hebergement">hebergement</string>
     <string name="a_visiter">A visiter</string>
     <string name="deplacement">Deplacement</string>
@@ -21,7 +21,7 @@
 
     <!--Menu secondaire -->
     <string name="hotel">Hotel</string>
-    <string name="auberge">hostel</string>
+    <string name="auberge">Auberge</string>
 
 
     <!--a visiter -->
@@ -40,9 +40,9 @@
     <string name="chute">Chute</string>
 
     <!--bottom menu-->
-    <string name="menu_tous">All</string>
-    <string name="menu_meilleurs">Most visited</string>
-    <string name="menu_favoris">Favorites</string>
+    <string name="menu_tous">Tous</string>
+    <string name="menu_meilleurs">Plus Visités</string>
+    <string name="menu_favoris">Favoris</string>
 
 
 </resources>

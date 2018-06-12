@@ -11,7 +11,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_profile"
+        android:id="@+id/rl_illustrator"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
