@@ -290,7 +290,44 @@ if(item.equals(hotel)){
             listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 
 
+}else if(item.equals(auberge)) {
+
+
+}else if(item.equals(site_touristique)) {
+
+
+}else if(item.equals(sites_naturels)) {
+
+
+}else if(item.equals(musee)) {
+
+
+}else if(item.equals(art)) {
+
+
+}else if(item.equals(plage)) {
+
+
+}else if(item.equals(restaurant)) {
+
+
 }
+else if(item.equals(patisserie)) {
+
+
+}
+else if(item.equals(ligne_aerienne)) {
+
+
+}else if(item.equals(location)) {
+
+
+}
+else if(item.equals(auberge)) {
+
+
+}
+
 
 /*
                 Toast.makeText(getApplicationContext(),
@@ -333,7 +370,13 @@ if(item.equals(hotel)){
         super.onBackPressed();
         finish();
     }
-
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Intent mIntent = getIntent();
+        finish();
+        startActivity(mIntent);
+    }
     public void addDotsIndicator(int position) {
 
         mDots = new TextView[2];
