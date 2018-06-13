@@ -4,8 +4,8 @@
 <string name="navigation_drawer_open">open</string>
 <string name="navigation_drawer_close">close</string>
 
-    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
-
+    <string name="path_fr2">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
     <!--Menu principal -->
     <string name="acceuil">Home</string>
     <string name="hebergement">Accommodation</string>

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.ingwesley.www.easytouriste_true.All_Adapters.FavoritesAdapter;
 import com.ingwesley.www.easytouriste_true.All_Adapters.Listing_All_Adapter;
 import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
@@ -39,8 +40,9 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
     RecyclerView recyclerView;
     DatabaseHelper myDb;
     private List<ModelEndroits> listEndroitFav;
-    Listing_All_Adapter adapter;
+    FavoritesAdapter adapter;
     FragmentActivity c;
+    String key;
 // screen not refresh on resume but in case we change the stared assignment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycle_all, container, false);
@@ -56,12 +58,12 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         // toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
         //searchView = view.findViewById(R.id.search_view);
         listEndroitFav = new ArrayList<>();
-
+      key=c.getIntent().getExtras().getString("key");
 
         recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
 
-        load_data_from_server(0);
-        adapter = new Listing_All_Adapter(c, listEndroitFav);
+        load_data_from_server(key);
+        adapter = new FavoritesAdapter(c, listEndroitFav);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(c));
 
@@ -116,7 +118,7 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
         searchView.setQueryHint("Search");
-
+        searchView.setMaxWidth(Integer.MAX_VALUE);
         super.onCreateOptionsMenu(menu, inflater);
 
     }
@@ -124,21 +126,21 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
     public void onResume(){
         super.onResume();
         //listEndroit = new ArrayList<>();
-        load_data_from_server(0);
+        load_data_from_server(key);
         //searchView.setIconified(true);
         resetSearch();
     }
 
 
-    private void load_data_from_server(int id) {
+    private void load_data_from_server(final String id) {
 
-        @SuppressLint("StaticFieldLeak") AsyncTask<Integer, Void, Void> task1 = new AsyncTask<Integer, Void, Void>() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Void> task1 = new AsyncTask<String, Void, Void>() {
             @Override
-            protected Void doInBackground(Integer... integers) {
+            protected Void doInBackground(String... strings) {
                 String path=getString(R.string.path_fr);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url(path)
+                        .url(path+id)
                         .build();
                 listEndroitFav.removeAll(listEndroitFav);
                 try {
@@ -152,18 +154,21 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
                         JSONObject object = array.getJSONObject(i);
                         for (int j = 0; j < myDb.getAllEndroitsId().length; j++) {
                             //String ids= (String) listIds.get(j);
-                            boolean var =(myDb.checkUser(object.getString("id_end"))) ? true : false;
-                            if (object.getString("id_end").equals(myDb.getAllEndroitsId()[j])) {
+                            //boolean var =(myDb.checkUser(object.getString("id_end"))) ? true : false;
+                            if (object.getString("id").equals(myDb.getAllEndroitsId()[j])) {
 
                                 ModelEndroits data = new ModelEndroits(
-                                        object.getString("id_end"),
-                                        object.getString("nom_end"),
-                                        object.getString("illustration_End"),
-                                        object.getString("description_end"),
-                                        object.getString("adresse_end"),
-                                        object.getString("Telephone1"),
-                                        object.getString("Email"),
-                                        object.getString("ville"));
+                                        object.getString("id"),
+                                        object.getString("nom"),
+                                        object.getString("url"),
+                                        object.getString("description"),
+                                        object.getString("adresse"),
+                                        object.getString("telephone"),
+                                        object.getString("email"),
+                                        object.getString("stars"),
+                                        object.getString("prix"),
+                                        object.getString("id_cat")
+                                );
                                 listEndroitFav.add(data);
                             }
                         }
@@ -219,14 +224,14 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
                 }
             }
 
-            adapter = new Listing_All_Adapter(c, filteredList);
+            adapter = new FavoritesAdapter(c, filteredList);
             recyclerView.setAdapter(adapter);
         }
         return false;
     }
 
     public void resetSearch() {
-        adapter = new Listing_All_Adapter(c, listEndroitFav);
+        adapter = new FavoritesAdapter(c, listEndroitFav);
         recyclerView.setAdapter(adapter);
     }
 

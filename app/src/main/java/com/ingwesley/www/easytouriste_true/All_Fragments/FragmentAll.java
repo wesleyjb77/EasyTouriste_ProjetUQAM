@@ -60,6 +60,8 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
 
         c = getActivity();
        // toolbar = view.findViewById(R.id.toolbar1);
+        String key=c.getIntent().getExtras().getString("key");
+
         setHasOptionsMenu(true);
 
         listEndroit = new ArrayList<>();
@@ -67,7 +69,7 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
 
         recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
 
-         load_data_from_server(0);
+         load_data_from_server(key);
          adapter = new Listing_All_Adapter(c, listEndroit);
 
            recyclerView.setLayoutManager(new LinearLayoutManager(c));
@@ -87,23 +89,24 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(this);
         searchView.setQueryHint("Search");
-
+        searchView.setMaxWidth(Integer.MAX_VALUE);
         super.onCreateOptionsMenu(menu, inflater);
 
     }
 
 
 
-    private void load_data_from_server(int id) {
+    private void load_data_from_server(final String id) {
 
-        @SuppressLint("StaticFieldLeak") AsyncTask<Integer, Void, Void> task2 = new AsyncTask<Integer, Void, Void>() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Void> task2 = new AsyncTask<String, Void, Void>() {
             @Override
-            protected Void doInBackground(Integer... integers) {
+            protected Void doInBackground(String... strings) {
                 String path=getString(R.string.path_fr);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url(path)
+                        .url(path+id)
                         .build();
+                //?id="+integers[0]
                 listEndroit.removeAll(listEndroit);
                 try {
                     Response response = client.newCall(request).execute();
@@ -114,7 +117,21 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
 
 
                         JSONObject object = array.getJSONObject(i);
+                        ModelEndroits data = new ModelEndroits(
+                                object.getString("id"),
+                                object.getString("nom"),
+                                object.getString("url"),
+                                object.getString("description"),
+                                object.getString("adresse"),
+                                object.getString("telephone"),
+                                object.getString("email"),
+                                object.getString("stars"),
+                                object.getString("prix"),
+                                object.getString("id_cat")
+                        );
+                        listEndroit.add(data);
 
+/*
                         ModelEndroits data = new ModelEndroits(
                                 object.getString("id_end"),
                                 object.getString("nom_end"),
@@ -125,6 +142,7 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
                                 object.getString("Email"),
                                 object.getString("ville"));
                         listEndroit.add(data);
+                        */
 
                     }
 

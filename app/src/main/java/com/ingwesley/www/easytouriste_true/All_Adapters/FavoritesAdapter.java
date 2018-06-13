@@ -2,25 +2,23 @@ package com.ingwesley.www.easytouriste_true.All_Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.ingwesley.www.easytouriste_true.All_Fragments.FragmentFavorites;
 import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.DescActivity;
 import com.ingwesley.www.easytouriste_true.R;
+
 import java.util.List;
 
-public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapter.ViewHolder> {
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {
     private Context context;
     String path;
     private List<ModelEndroits> endroits;
@@ -28,7 +26,7 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
     DatabaseHelper myDb;
 
   //  private Listing_All_AdapterListener listener;
-    public Listing_All_Adapter(Context context, List<ModelEndroits> endroits) {
+    public FavoritesAdapter(Context context, List<ModelEndroits> endroits) {
         this.context = context;
         this.endroits = endroits;
         this.listEndroitFiltered = endroits;
@@ -117,6 +115,7 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
                     else {
                         fav.setImageResource(R.drawable.ic_unfavorite);
                         myDb.deleteData(endroits.get(position).getId());
+                        removeItem(position);
                         Toast.makeText(context, "Remove " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
                     }
                     }
@@ -127,6 +126,13 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
             itemView.setOnClickListener(this);
 
         }
+
+        public void removeItem(int position){
+            endroits.remove(position);
+            notifyItemRemoved(position);
+
+
+            }
 
         @Override
         public void onClick(View v) {

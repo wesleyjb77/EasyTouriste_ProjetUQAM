@@ -8,10 +8,13 @@ public class ModelEndroits {
     private String adresse;
     private String telephone;
     private String email;
-    private String ville;
+    private String stars;
+    private String prix;
+    private String id_cat;
 
 
-    public ModelEndroits(String id, String nom, String illustration, String description, String adresse, String telephone, String email, String ville) {
+
+    public ModelEndroits(String id, String nom, String illustration, String description, String adresse, String telephone, String email, String stars,String prix,String id_cat) {
         this.id = id;
         this.nom = nom;
         this.illustration = illustration;
@@ -19,7 +22,7 @@ public class ModelEndroits {
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
-        this.ville = ville;
+        this.stars = stars;
     }
 
     public String getId() {
@@ -80,11 +83,33 @@ public class ModelEndroits {
     }
 
     public String getVille() {
-        return ville;
+        return stars;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public void setVille(String stars) {
+        this.stars = stars;
+    }
+    public String getStars() {
+        return stars;
     }
 
+    public void setStars(String stars) {
+        this.stars = stars;
+    }
+
+    public String getPrix() {
+        return prix;
+    }
+
+    public void setPrix(String prix) {
+        this.prix = prix;
+    }
+
+    public String getId_cat() {
+        return id_cat;
+    }
+
+    public void setId_cat(String id_cat) {
+        this.id_cat = id_cat;
+    }
 }

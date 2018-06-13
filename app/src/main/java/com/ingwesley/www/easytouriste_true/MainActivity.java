@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
+        //cinema
        acceuil =getResources().getString(R.string.acceuil);
         hebergement = getString(R.string.hebergement);
         a_visiter =getString(R.string.a_visiter);
@@ -282,39 +283,52 @@ public class MainActivity extends AppCompatActivity {
 
 final String item = (String) listHash.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-
+String cat=null;
 
 
 if(item.equals(hotel)){
+    cat="1";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
+    /*
     Toast.makeText(getApplicationContext(),
             listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 
-
+*/
 }else if(item.equals(auberge)) {
+    cat="1";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 
 }else if(item.equals(site_touristique)) {
+    cat="6";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 
 }else if(item.equals(sites_naturels)) {
 
-
+    cat="6";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 }else if(item.equals(musee)) {
 
-
+    cat="6";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 }else if(item.equals(art)) {
-
+    cat="6";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 }else if(item.equals(plage)) {
-
+    cat="4";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 }else if(item.equals(restaurant)) {
 
-
+    cat="3";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 }
 else if(item.equals(patisserie)) {
 
-
+    cat="3";
+    mDrawerLayout.closeDrawer(Gravity.LEFT);
 }
 else if(item.equals(ligne_aerienne)) {
 
@@ -323,11 +337,13 @@ else if(item.equals(ligne_aerienne)) {
 
 
 }
-else if(item.equals(auberge)) {
+else {
 
 
 }
-
+                Intent myIntent = new Intent(MainActivity.this,MainListing.class);
+                myIntent.putExtra("key", cat); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
 
 /*
                 Toast.makeText(getApplicationContext(),
@@ -340,11 +356,7 @@ else if(item.equals(auberge)) {
 
 
 /*
-                Intent myIntent = new Intent(MainActivity.this,MainListing.class);
-                //myIntent.putExtra("key", value); //Optional parameters
-                MainActivity.this.startActivity(myIntent);
 
-                mDrawerLayout.closeDrawer(Gravity.LEFT);
                 */
 
                 return false;
