@@ -177,15 +177,6 @@ public class MainListing extends AppCompatActivity {
         return (ArrayList<ModelEndroits>) listEndroit;
     }
 
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // splash t=new splash();
-        // Dismiss the toast
-        Toast.makeText(this, "Starting listing", Toast.LENGTH_SHORT).show();
-    }
-    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -209,9 +200,7 @@ public class MainListing extends AppCompatActivity {
 
 public void ObtainData(Fragment fragment){
 
-
     Bundle args = new Bundle();
-
     args.putParcelable("endroits", Parcels.wrap(listEndroit));
     fragment.setArguments(args);
 

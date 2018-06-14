@@ -18,6 +18,9 @@ import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
@@ -26,6 +29,7 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
     RecyclerView recyclerView;
     DatabaseHelper myDb;
     private List<ModelEndroits> listEndroitFav;
+    private List<ModelEndroits> listEndroit;
     FavoritesAdapter adapter;
     FragmentActivity c;
 // screen not refresh on resume but in case we change the stared assignment
@@ -37,6 +41,11 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         setHasOptionsMenu(true);
 
         listEndroitFav = new ArrayList<>();
+        listEndroit = new ArrayList<>();
+
+        listEndroit = Parcels.unwrap(getArguments().getParcelable("endroits"));
+            sortArray();
+
         recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
         adapter = new FavoritesAdapter(c, listEndroitFav);
 
@@ -44,6 +53,31 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
 
         recyclerView.setAdapter(adapter);
         return view;
+    }
+
+
+    public  void sortArray(){
+
+        for (ModelEndroits en : listEndroit) {
+            //System.out.println (en.getId());
+            if(myDb.checkUser(en.getId())){
+                ModelEndroits data = new ModelEndroits(
+                        en.getId(),
+                        en.getNom(),
+                        en.getIllustration(),
+                        en.getDescription(),
+                        en.getAdresse(),
+                        en.getTelephone(),
+                        en.getEmail(),
+                        en.getStars(),
+                        en.getPrix(),
+                        en.getId_cat()
+                );
+                listEndroitFav.add(data);
+
+
+            }
+        }
     }
 /*
     @Override
