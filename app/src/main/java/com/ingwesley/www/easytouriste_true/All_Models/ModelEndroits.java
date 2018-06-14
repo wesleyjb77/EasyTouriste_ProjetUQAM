@@ -1,5 +1,5 @@
 package com.ingwesley.www.easytouriste_true.All_Models;
-
+import org.parceler.Parcel;
 public class ModelEndroits {
     private String id;
     private String nom;

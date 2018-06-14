@@ -1,10 +1,12 @@
 package com.ingwesley.www.easytouriste_true;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 
@@ -30,7 +32,18 @@ import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.Helpers.BottomNavigationViewHelper;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.parceler.Parcels;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 public class MainListing extends AppCompatActivity {
@@ -41,6 +54,9 @@ public class MainListing extends AppCompatActivity {
     private MenuItem menuItem;
     private Menu menu;
     String TAG1 = "MainListing";
+
+    private List<ModelEndroits> listEndroit= new ArrayList<>();;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +74,13 @@ public class MainListing extends AppCompatActivity {
         menu = bottomNavigationView.getMenu();
         menuItem = menu.getItem(0);
         menuItem.setChecked(true);
-        FragmentAll tab1=new FragmentAll();
-        replaceFragment(tab1);
+
+        String key=getIntent().getExtras().getString("key");
+        listEndroit=load_data_from_server(key);
+        replaceFragment(new FragmentAll());
+
+
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -91,6 +112,72 @@ public class MainListing extends AppCompatActivity {
         });
 
     }
+    private ArrayList<ModelEndroits> load_data_from_server(final String id) {
+
+        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Void> task2 = new AsyncTask<String, Void, Void>() {
+            @Override
+            protected Void doInBackground(String... strings) {
+                String path=getString(R.string.path_fr);
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(path+strings[0])
+                        .build();
+                //?id="+integers[0]
+                //listEndroit.removeAll(listEndroit);
+                try {
+                    Response response = client.newCall(request).execute();
+                    JSONArray array = new JSONArray(response.body().string());
+
+                    for (int i = 0; i < array.length(); i++) {
+
+
+                        JSONObject object = array.getJSONObject(i);
+                        ModelEndroits data = new ModelEndroits(
+                                object.getString("id"),
+                                object.getString("nom"),
+                                object.getString("url"),
+                                object.getString("description"),
+                                object.getString("adresse"),
+                                object.getString("telephone"),
+                                object.getString("email"),
+                                object.getString("stars"),
+                                object.getString("prix"),
+                                object.getString("id_cat")
+                        );
+                        listEndroit.add(data);
+
+
+
+
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    System.out.println("End of content");
+                }
+                //onProgressUpdate();
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+               // adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //Toast.makeText(c, "Starting programme ", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        task2.execute(id);
+        return (ArrayList<ModelEndroits>) listEndroit;
+    }
+
+    /*
     @Override
     public void onStart() {
         super.onStart();
@@ -98,6 +185,7 @@ public class MainListing extends AppCompatActivity {
         // Dismiss the toast
         Toast.makeText(this, "Starting listing", Toast.LENGTH_SHORT).show();
     }
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -107,7 +195,7 @@ public class MainListing extends AppCompatActivity {
 
     public void replaceFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
+        ObtainData(fragment);
         fragmentTransaction.replace(R.id.fram, fragment, "FragmentThree");
         //create first framelayout with id fram in the activity where fragments will be displayed
         fragmentTransaction.commit();
@@ -116,6 +204,21 @@ public class MainListing extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+
+
+public void ObtainData(Fragment fragment){
+
+
+    Bundle args = new Bundle();
+
+    args.putParcelable("endroits", Parcels.wrap(listEndroit));
+    fragment.setArguments(args);
+
+    /////
+
+
+}
 
 static class InternetConnection {
 

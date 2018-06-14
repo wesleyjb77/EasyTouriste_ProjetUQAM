@@ -1,6 +1,4 @@
 package com.ingwesley.www.easytouriste_true.All_Fragments;
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,61 +14,35 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.ingwesley.www.easytouriste_true.All_Adapters.FavoritesAdapter;
-import com.ingwesley.www.easytouriste_true.All_Adapters.Listing_All_Adapter;
 import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
 public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
     private MaterialSearchView searchView;
-    // private Toolbar toolbar;
+
     RecyclerView recyclerView;
     DatabaseHelper myDb;
     private List<ModelEndroits> listEndroitFav;
     FavoritesAdapter adapter;
     FragmentActivity c;
-    String key;
 // screen not refresh on resume but in case we change the stared assignment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycle_all, container, false);
 
         c = getActivity();
         myDb = new DatabaseHelper(c);
-        // toolbar = view.findViewById(R.id.toolbar1);
         setHasOptionsMenu(true);
-        // ((AppCompatActivity) c).setSupportActionBar(toolbar);
-//        ((AppCompatActivity) c).getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //((AppCompatActivity) c).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //toolbar.setTitleTextColor(Color.parseColor("#696969"));
-        // toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        //searchView = view.findViewById(R.id.search_view);
+
         listEndroitFav = new ArrayList<>();
-      key=c.getIntent().getExtras().getString("key");
-
         recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
-
-        load_data_from_server(key);
         adapter = new FavoritesAdapter(c, listEndroitFav);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(c));
 
         recyclerView.setAdapter(adapter);
-//rate_bar=view.findViewById(R.id.staredBar);
-        // rate_bar.setNumStars (3);
-
         return view;
     }
 /*
@@ -122,16 +94,8 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         super.onCreateOptionsMenu(menu, inflater);
 
     }
-    @Override
-    public void onResume(){
-        super.onResume();
-        //listEndroit = new ArrayList<>();
-        load_data_from_server(key);
-        //searchView.setIconified(true);
-        resetSearch();
-    }
 
-
+/*
     private void load_data_from_server(final String id) {
 
         @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Void> task1 = new AsyncTask<String, Void, Void>() {
@@ -140,9 +104,9 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
                 String path=getString(R.string.path_fr);
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder()
-                        .url(path+id)
+                        .url(path+strings[0])
                         .build();
-                listEndroitFav.removeAll(listEndroitFav);
+                //listEndroitFav.removeAll(listEndroitFav);
                 try {
                     Response response = client.newCall(request).execute();
 
@@ -191,8 +155,12 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
 
         task1.execute(id);
     }
-
-
+    */
+///Before Android 4.1, method int android.support.v7.widget.DropDownListView.lookForSelectablePosition(int, boolean) would have incorrectly overridden the package-private method in android.widget.ListView
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
     @Override
     public boolean onMenuItemActionExpand(MenuItem menuItem) {
         return false;

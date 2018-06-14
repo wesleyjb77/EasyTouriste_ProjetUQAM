@@ -66,11 +66,11 @@
             android:stepSize="0.0" />
         <ImageView
             android:id="@+id/fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/staredBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
            android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginRight="20dp"
             android:text="Peguy-ville"
            />
