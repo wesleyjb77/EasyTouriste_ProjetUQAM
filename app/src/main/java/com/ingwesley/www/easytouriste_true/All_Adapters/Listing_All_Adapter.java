@@ -18,6 +18,9 @@ import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.DescActivity;
 import com.ingwesley.www.easytouriste_true.R;
+
+import org.parceler.Parcel;
+
 import java.util.List;
 
 public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapter.ViewHolder> {

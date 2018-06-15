@@ -16,6 +16,8 @@ import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.DescActivity;
 import com.ingwesley.www.easytouriste_true.R;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
 public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder> {

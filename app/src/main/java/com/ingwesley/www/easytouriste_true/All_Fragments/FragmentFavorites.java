@@ -79,6 +79,15 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
             }
         }
     }
+    public void onResume() {
+        super.onResume();
+        listEndroitFav.clear();
+        sortArray();
+        resetSearch();
+
+    }
+
+
 /*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

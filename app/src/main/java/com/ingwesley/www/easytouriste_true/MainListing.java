@@ -54,6 +54,7 @@ public class MainListing extends AppCompatActivity {
     private MenuItem menuItem;
     private Menu menu;
     String TAG1 = "MainListing";
+    String key;
 
     private List<ModelEndroits> listEndroit= new ArrayList<>();;
 
@@ -75,7 +76,7 @@ public class MainListing extends AppCompatActivity {
         menuItem = menu.getItem(0);
         menuItem.setChecked(true);
 
-        String key=getIntent().getExtras().getString("key");
+        key=getIntent().getExtras().getString("key");
         listEndroit=load_data_from_server(key);
         replaceFragment(new FragmentAll());
 
@@ -195,7 +196,6 @@ public class MainListing extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
 
 
 public void ObtainData(Fragment fragment){

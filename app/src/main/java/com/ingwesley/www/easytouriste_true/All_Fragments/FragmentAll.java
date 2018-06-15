@@ -63,7 +63,11 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
 
     }
 
+    public void onResume() {
+        super.onResume();
+        resetSearch();
 
+    }
 
     @Override
     public boolean onMenuItemActionExpand(MenuItem menuItem) {
