@@ -28,6 +28,9 @@
             android:name=".DescActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".FavoritesActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -19,7 +19,7 @@ import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import org.parceler.Parcels;
+//import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
     FragmentActivity c;
 // screen not refresh on resume but in case we change the stared assignment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycle_all, container, false);
+        View view = inflater.inflate(R.layout.recycle_fav, container, false);
 
         c = getActivity();
         myDb = new DatabaseHelper(c);
@@ -43,10 +43,10 @@ public class FragmentFavorites extends Fragment  implements SearchView.OnQueryTe
         listEndroitFav = new ArrayList<>();
         listEndroit = new ArrayList<>();
 
-        listEndroit = Parcels.unwrap(getArguments().getParcelable("endroits"));
+        //listEndroit = Parcels.unwrap(getArguments().getParcelable("endroits"));
             sortArray();
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
+        recyclerView = (RecyclerView) view.findViewById(R.id.endroit_recfav);
         adapter = new FavoritesAdapter(c, listEndroitFav);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(c));

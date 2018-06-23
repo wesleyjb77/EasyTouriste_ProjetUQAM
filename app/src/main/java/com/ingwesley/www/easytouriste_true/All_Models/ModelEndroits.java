@@ -1,10 +1,5 @@
 package com.ingwesley.www.easytouriste_true.All_Models;
 
-
-import org.parceler.Parcel;
-import org.parceler.ParcelConstructor;
-
-@Parcel(Parcel.Serialization.BEAN)
 public class ModelEndroits {
     private String id;
     private String nom;
@@ -17,8 +12,6 @@ public class ModelEndroits {
     private String prix;
     private String id_cat;
 
-
-    @ParcelConstructor
     public ModelEndroits(String id, String nom, String illustration, String description, String adresse, String telephone, String email, String stars,String prix,String id_cat) {
         this.id = id;
         this.nom = nom;

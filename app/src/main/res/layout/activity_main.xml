@@ -3,56 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-<!--
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:background="#234E6F"
-        android:layout_height="60dp"
-        android:fitsSystemWindows="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textColor="#ffffff"
-            android:layout_toRightOf="@id/rl_menu"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:id="@+id/tv_name"
-            android:text="@string/app_name"/>
 
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_centerVertical="true"
-            android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/menu_icon"/>
-        <RelativeLayout
-            android:layout_width="55dp"
-            android:id="@+id/rl_menu"
-            android:layout_height="match_parent">
-
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/container_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </RelativeLayout>
-    -->
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarMain"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#234E6F"
-        app:popupTheme="@style/AppTheme.NoActionBar.PopupOverlay"/>
+        <include
+            android:id="@+id/toolbarMain"
+            layout="@layout/toolbar"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     </android.support.design.widget.AppBarLayout>
 
 <android.support.v4.widget.DrawerLayout

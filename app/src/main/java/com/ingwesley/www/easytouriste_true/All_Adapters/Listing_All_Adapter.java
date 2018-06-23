@@ -2,7 +2,7 @@ package com.ingwesley.www.easytouriste_true.All_Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.ingwesley.www.easytouriste_true.All_Fragments.FragmentFavorites;
 import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.DescActivity;
 import com.ingwesley.www.easytouriste_true.R;
 
-import org.parceler.Parcel;
 
 import java.util.List;
 
@@ -32,15 +30,15 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
 
   //  private Listing_All_AdapterListener listener;
     public Listing_All_Adapter(Context context, List<ModelEndroits> endroits) {
-        this.context = context;
         this.endroits = endroits;
+        this.context = context;
         this.listEndroitFiltered = endroits;
 
         myDb = new DatabaseHelper(context);
        // getFilter();
-            path="http://192.168.15.232/Easytouriste_mobile/images/endroits/";
+           // path="http://192.168.15.232/Easytouriste_mobile/images/endroits/";
 
-         //path="http://192.168.142.108/Easytouriste_mobile/images/endroits/";
+         path="";
     }
 
     @Override
@@ -71,6 +69,8 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return listEndroitFiltered.size();
@@ -91,7 +91,7 @@ public class Listing_All_Adapter extends RecyclerView.Adapter<Listing_All_Adapte
         public ImageView fav;
         public Context context;
         List<ModelEndroits> endroit;
-        public ViewHolder(final View itemView, final Context context, final List<ModelEndroits> endroits) {
+        public ViewHolder(View itemView, final Context context, final List<ModelEndroits> endroits) {
             super(itemView);
             this.context=context;
             this.endroit=endroits;

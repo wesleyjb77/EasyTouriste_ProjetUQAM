@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="190dp"
     android:orientation="vertical"
     android:background="#234e6f"
     >
@@ -24,6 +24,7 @@
             android:textColor="#eded"
             android:text="Imp Moore, Route de Montagne Noire"
             android:layout_marginRight="60dp"
+            android:layout_marginBottom="10dp"
             />
 
         <android.support.design.widget.FloatingActionButton
@@ -47,11 +48,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+       android:layout_marginBottom="2dp"
         android:layout_below="@id/entete"
+
        >
 
         <ImageButton
@@ -59,11 +61,11 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             app:srcCompat="@drawable/ic_mail"
             android:background="@android:color/transparent"
-            android:layout_margin="0dp"
-            android:clickable="true"/>
+            android:clickable="true"
+            />
 
 
         <ImageButton
@@ -71,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:layout_margin="0dp"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_call"
@@ -82,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center_vertical"
             android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_direction"
             android:layout_margin="0dp"

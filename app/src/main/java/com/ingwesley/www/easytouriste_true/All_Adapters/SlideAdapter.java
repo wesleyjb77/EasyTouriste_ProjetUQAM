@@ -1,6 +1,7 @@
 package com.ingwesley.www.easytouriste_true.All_Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,7 @@ import android.widget.TextView;
 
 
 import com.ingwesley.www.easytouriste_true.R;
-
-import java.util.Objects;
+import com.ingwesley.www.easytouriste_true.WebViewActivity;
 
 // for display the slide
 public class SlideAdapter extends PagerAdapter {
@@ -27,17 +27,11 @@ public class SlideAdapter extends PagerAdapter {
     };
 
     // list of titles
-    public String[] lst_title = {
-            "MONUMENT",
-            "CULTURE"
+    public int[] lst_title = {
+            R.string.histoire,
+          R.string.culture
     }   ;
     // list of descriptions
-    public String[] lst_description = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
-    };
     // list of background colors
     public int[]  lst_backgroundcolor = {
             R.drawable.back2,
@@ -60,7 +54,7 @@ public class SlideAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.slide,container,false);
         LinearLayout layoutslide = view.findViewById(R.id.slidelinearlayout);
@@ -69,9 +63,21 @@ public class SlideAdapter extends PagerAdapter {
         //TextView description = view.findViewById(R.id.txtdescription);
        //layoutslide.setBackgroundColor(lst_backgroundcolor[position]);
         layoutslide.setBackgroundResource(lst_backgroundcolor[position]);
-       imgslide.setImageResource(lst_images[position]);
+        imgslide.setImageResource(lst_images[position]);
         txttitle.setText(lst_title[position]);
        // description.setText(lst_description[position]);
+        imgslide.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                //this will log the page number that was click
+               // Log.i("TAG", "This page was clicked: " + pos);
+
+                if (position==0){
+                    Intent i = new Intent(context, WebViewActivity.class);
+                    i.putExtra("position", position);
+                    context.startActivity(i);
+                }
+            }
+        });
         container.addView(view);
         return view;
     }

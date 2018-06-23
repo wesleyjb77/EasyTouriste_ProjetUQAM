@@ -3,13 +3,24 @@
 
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+
+
+
+    <string name="path_fr_all">http://192.168.15.233/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+
     <string name="path_fr1">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
     <string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
-    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+
+
+
+
+    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+    <string name="load"> \tChargement...</string>
+    <string name="search">Rechercher...</string>
 
     <!--Menu principal -->
     <string name="acceuil">Acceuil</string>
-    <string name="hebergement">hebergement</string>
+    <string name="hebergement">Hebergement</string>
     <string name="a_visiter">A visiter</string>
     <string name="deplacement">Deplacement</string>
     <string name="aide">Aide</string>
@@ -28,10 +39,10 @@
     <!--a visiter -->
     <string name="site_touristique">Site Touristique</string>
     <string name="sites_naturels">Sites Naturels</string>
-    <string name="musee">musée</string>
+    <string name="musee">Musée</string>
     <string name="art">Gallerie Dart</string>
     <!--deplacement -->
-    <string name="location">location de voiture</string>
+    <string name="location">Location de voiture</string>
     <string name="ligne_aerienne">Ligne Aerienne</string>
     <!--restoration -->
     <string name="restaurant">Restaurant</string>
@@ -39,6 +50,11 @@
     <!--A faire -->
     <string name="plage">Plage</string>
     <string name="chute">Chute</string>
+
+    <!--pager-->
+    <string name="culture">Culture</string>
+    <string name="histoire">Histoire</string>
+
 
     <!--bottom menu-->
     <string name="menu_tous">Tous</string>

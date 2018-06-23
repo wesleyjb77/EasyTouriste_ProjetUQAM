@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import java.util.Timer;
@@ -14,35 +16,25 @@ import java.util.TimerTask;
 public class splash extends AppCompatActivity {
 
     ProgressBar progressBar;
-    Handler handler;
-    Runnable runnable;
-    Timer timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_splash);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
-        handler=new Handler();
-
-        runnable=new Runnable() {
+        new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-             progressBar.setVisibility(View.GONE);
-            timer.cancel();
 
-            }
-        };
-        timer=new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-            handler.post(runnable);
-               Intent i=new Intent(splash.this, MainActivity.class);
-                startActivity(i);
+                Intent mainIntent = new Intent(splash.this,MainActivity.class);
+                splash.this.startActivity(mainIntent);
                 splash.this.finish();
             }
-        },1000,100);
+        }, 2000);
     }
 // probleme with the splash
 }

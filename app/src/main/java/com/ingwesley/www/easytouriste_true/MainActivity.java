@@ -1,7 +1,11 @@
 package com.ingwesley.www.easytouriste_true;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +18,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -27,12 +32,14 @@ import android.widget.Toast;
 import com.ingwesley.www.easytouriste_true.All_Adapters.ExpandableAdapter;
 import com.ingwesley.www.easytouriste_true.All_Adapters.SlideAdapter;
 import com.ingwesley.www.easytouriste_true.All_Models.MenuNameProvider;
+
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,ExpandableListView.OnGroupClickListener {
 
     public String hotel;
     String acceuil;
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     String location;
     String ligne_aerienne;
     String restaurant;
-    String patisserie ;
+    String patisserie;
     String plage;
     String art;
     String chute;
@@ -70,19 +77,19 @@ public class MainActivity extends AppCompatActivity {
     private Button mprev;
     private Button mNext;
     public int mCurPg;
-    Toolbar toolbar;
+   Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e(TAG, "Destroy");
-       toolbar = (Toolbar) findViewById(R.id.toolbarMain);
+        toolbar = (Toolbar) findViewById(R.id.toolbarMain);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         toolbar.setNavigationIcon(R.drawable.menu_icon);
-       // getSupportActionBar().hide();
-      // rl_menu = findViewById(R.id.rl_menu);
+        // getSupportActionBar().hide();
+        // rl_menu = findViewById(R.id.rl_menu);
         mListView = findViewById(R.id.activity_expandable_list_view);
         initData();
         mlistAdapter = new ExpandableAdapter(MainActivity.this, listDataHeader, listHash);
@@ -96,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(myadapter);
         eventData();
         addDotsIndicator(0);
+
+
         viewPager.addOnPageChangeListener(viewListener);
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(mCurPg - 1);
             }
         });
-
-
 /*
         rl_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +131,21 @@ public class MainActivity extends AppCompatActivity {
         */
     }
 
+    public Boolean isInternetConnected(){
+        boolean status = false;
+        try{
+            InetAddress address = InetAddress.getByName("192.168.15.1");
 
+            if(address!=null)
+            {
+                status = true;
+            }
+        }catch (Exception e) // Catch the exception
+        {
+            e.printStackTrace();
+        }
+        return status;
+    }
     private void setListViewHeight(ExpandableListView listView, int group) {
         ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
         int totalHeight = 0;
@@ -159,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
         listView.requestLayout();
 
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -167,35 +189,38 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
 
 
-
         return true;
     }
+
+
+
+
     private void initData() {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
         //cinema
-       acceuil =getResources().getString(R.string.acceuil);
+        acceuil = getResources().getString(R.string.acceuil);
         hebergement = getString(R.string.hebergement);
-        a_visiter =getString(R.string.a_visiter);
-       deplacement =getString(R.string.deplacement);
+        a_visiter = getString(R.string.a_visiter);
+        deplacement = getString(R.string.deplacement);
         //String aide =getString(R.string.aide);
-        contact_nous =getString(R.string.contact_nous);
-      a_faire =getString(R.string.a_faire);
-        restauration=getString(R.string.restauration);
+        contact_nous = getString(R.string.contact_nous);
+        a_faire = getString(R.string.a_faire);
+        restauration = getString(R.string.restauration);
         meteo = getString(R.string.meteo);
         suivez_nous = getString(R.string.suivez_nous);
-          hotel = getString(R.string.hotel);
+        hotel = getString(R.string.hotel);
         auberge = getString(R.string.auberge);
         site_touristique = getString(R.string.site_touristique);
         sites_naturels = getString(R.string.sites_naturels);
         musee = getString(R.string.musee);
-        location=getString(R.string.location);
-       ligne_aerienne = getString(R.string.ligne_aerienne);
-        restaurant=getString(R.string.restaurant);
-      patisserie = getString(R.string.patisserie);
-       plage = getString(R.string.plage);
-         art=getString(R.string.art);
-        chute =getString(R.string.chute);
+        location = getString(R.string.location);
+        ligne_aerienne = getString(R.string.ligne_aerienne);
+        restaurant = getString(R.string.restaurant);
+        patisserie = getString(R.string.patisserie);
+        plage = getString(R.string.plage);
+        art = getString(R.string.art);
+        chute = getString(R.string.chute);
 
         listDataHeader.add(acceuil);
         listDataHeader.add(hebergement);
@@ -209,11 +234,10 @@ public class MainActivity extends AppCompatActivity {
         listDataHeader.add(suivez_nous);
 
 
-
         List<String> Acceuil = new ArrayList<>();
         //Acceuil.add("This is Expandable ListView");
-        List<String> suivezNous  = new ArrayList<>();
-        List<String> Contact_nous  = new ArrayList<>();
+        List<String> suivezNous = new ArrayList<>();
+        List<String> Contact_nous = new ArrayList<>();
         List<String> Meteo = new ArrayList<>();
 
 
@@ -240,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
         Deplacement.add(ligne_aerienne);
 
 
-
         listHash.put(listDataHeader.get(0), Acceuil);
         listHash.put(listDataHeader.get(1), Hebergement);
         listHash.put(listDataHeader.get(2), Restoration);
@@ -250,12 +273,6 @@ public class MainActivity extends AppCompatActivity {
         listHash.put(listDataHeader.get(6), Meteo);
         listHash.put(listDataHeader.get(7), suivezNous);
         listHash.put(listDataHeader.get(8), Contact_nous);
-
-
-
-
-
-
 
 
     }
@@ -275,73 +292,68 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         mListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
 
-final String item = (String) listHash.get(listDataHeader.get(groupPosition)).get(childPosition);
+                final String item = (String) listHash.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-String cat=null;
+                String cat = null;
 
-
-if(item.equals(hotel)){
-    cat="1";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                if (item.equals(hotel)) {
+                    cat = "1";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
     /*
     Toast.makeText(getApplicationContext(),
             listHash.get(listDataHeader.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();
 
 */
-}else if(item.equals(auberge)) {
-    cat="1";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(auberge)) {
+                    cat = "1";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 
-}else if(item.equals(site_touristique)) {
-    cat="6";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(site_touristique)) {
+                    cat = "6";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
 
-}else if(item.equals(sites_naturels)) {
+                } else if (item.equals(sites_naturels)) {
 
-    cat="6";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
-}else if(item.equals(musee)) {
+                    cat = "6";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(musee)) {
 
-    cat="6";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
-}else if(item.equals(art)) {
-    cat="6";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                    cat = "6";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(art)) {
+                    cat = "6";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
-}else if(item.equals(plage)) {
-    cat="4";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(plage)) {
+                    cat = "4";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
 
-}else if(item.equals(restaurant)) {
+                } else if (item.equals(restaurant)) {
 
-    cat="3";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
-}
-else if(item.equals(patisserie)) {
+                    cat = "3";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(patisserie)) {
 
-    cat="3";
-    mDrawerLayout.closeDrawer(Gravity.LEFT);
-}
-else if(item.equals(ligne_aerienne)) {
+                    cat = "3";
+                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+                } else if (item.equals(ligne_aerienne)) {
 
 
-}else if(item.equals(location)) {
+                } else if (item.equals(location)) {
 
 
-}
-else {
+                } else {
 
 
-}
-                Intent myIntent = new Intent(MainActivity.this,MainListing.class);
+                }
+                Intent myIntent = new Intent(MainActivity.this, MainListing.class);
                 myIntent.putExtra("key", cat); //Optional parameters
                 MainActivity.this.startActivity(myIntent);
 
@@ -354,11 +366,6 @@ else {
 */
 
 
-
-/*
-
-                */
-
                 return false;
 
             }
@@ -370,6 +377,18 @@ else {
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
                 setListViewHeight(parent, groupPosition);
+
+               // String group = (String) listHash.get(listDataHeader.get(groupPosition)).toString();
+                if (groupPosition==8){
+
+                    Intent favIntent = new Intent(MainActivity.this, FavoritesActivity.class);
+                    //favIntent.putExtra("key", cat); //Optional parameters
+                    MainActivity.this.startActivity(favIntent);
+
+                }
+               // if()
+
+
                 return false;
             }
         });
@@ -378,17 +397,13 @@ else {
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
-    @Override
     public void onRestart() {
         super.onRestart();
         Intent mIntent = getIntent();
         finish();
         startActivity(mIntent);
     }
+
     public void addDotsIndicator(int position) {
 
         mDots = new TextView[2];
@@ -406,6 +421,7 @@ else {
             mDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
         }
     }
+
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
 
 
@@ -422,7 +438,7 @@ else {
                 mprev.setEnabled(false);
                 mNext.setEnabled(true);
                 mprev.setVisibility(View.INVISIBLE);
-            } else if (position == mDots.length-1) {
+            } else if (position == mDots.length - 1) {
                 mprev.setEnabled(true);
                 mNext.setEnabled(false);
                 mNext.setVisibility(View.INVISIBLE);
@@ -442,4 +458,14 @@ else {
         }
     };
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+
+        return false;
+    }
 }

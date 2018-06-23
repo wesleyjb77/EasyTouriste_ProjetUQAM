@@ -17,9 +17,10 @@ import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
 import com.ingwesley.www.easytouriste_true.R;
 import android.view.MenuItem;
 
-import org.parceler.Parcels;
 
 import android.widget.SearchView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,27 +30,63 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
 
     RecyclerView recyclerView;
 
-    private List<ModelEndroits> listEndroit;
+    ArrayList<ModelEndroits> listEndroit;
+    private List<ModelEndroits> listEndroits;
     Listing_All_Adapter adapter;
     FragmentActivity c;
     //SearchView searchView;
-
+//Verification of boolean android.support.v7.widget.Toolbar.isOverflowMenuShowPending()
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycle_all, container, false);
+        recyclerView =(RecyclerView) inflater.inflate(R.layout.recycle_all, container, false);
         setHasOptionsMenu(true);
         c = getActivity();
-        listEndroit = new ArrayList<>();
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.endroit_rec);
-        listEndroit = Parcels.unwrap(getArguments().getParcelable("endroits"));
-           recyclerView.setLayoutManager(new LinearLayoutManager(c));
-        adapter = new Listing_All_Adapter(c, listEndroit);
+        //recyclerView.setHasFixedSize(true);
+        listEndroit=new ArrayList<>();
+        //listEndroit = Parcels.unwrap(getArguments().getParcelable("endroits"));
+        listEndroits=new ArrayList<>();
+        sortArray();
+        adapter = new Listing_All_Adapter(c, listEndroits);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(c));
         recyclerView.setAdapter(adapter);
-        //adapter.notifyDataSetChanged();
-
-        return view;
+        recyclerView.setHasFixedSize(true);
+        adapter.notifyDataSetChanged();
+        //adapter.notify();
+        return recyclerView;
     }
+public FragmentAll(){
 
+
+}
+    public  void sortArray(){
+
+        for (ModelEndroits en : listEndroit) {
+            //System.out.println (en.getId());
+
+                ModelEndroits data = new ModelEndroits(
+                        en.getId(),
+                        en.getNom(),
+                        en.getIllustration(),
+                        en.getDescription(),
+                        en.getAdresse(),
+                        en.getTelephone(),
+                        en.getEmail(),
+                        en.getStars(),
+                        en.getPrix(),
+                        en.getId_cat()
+                );
+                listEndroits.add(data);
+
+
+            }
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+       // listEndroit = new ArrayList<>();
+
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -109,5 +146,36 @@ public class FragmentAll extends Fragment implements SearchView.OnQueryTextListe
     public void resetSearch() {
         adapter = new Listing_All_Adapter(c, listEndroit);
         recyclerView.setAdapter(adapter);
+
     }
+
+
+
+
+/*
+
+
+
+
+ public void addStars(int numStars) {
+  private LinearLayout ratingLayout;
+    private TextView[] mStars;
+mDotLayout = findViewById(R.id.ratingLayout);
+        mStars= new TextView[5];
+        ratingLayout.removeAllViews();
+        for (int i = 0; i <  mStars.length; i++) {
+            mStars[i] = new TextView(c);
+            mStars[i].setText(Html.fromHtml("&#x2605;"));
+             mStars[i].setTextSize(25f);
+
+             if (numStars <= mStars.length()) {
+            mStars[i].setTextColor(getResources().getColor(R.color.colorAccent));
+
+        }
+        else{
+        mStars.setTextColor(getResources().getColor(R.color.colorGrey));
+            ratingLayout.addView(mStars[i]);
+
+        }
+      */
 }

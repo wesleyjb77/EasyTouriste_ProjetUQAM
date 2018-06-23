@@ -35,9 +35,9 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.View
 
         myDb = new DatabaseHelper(context);
        // getFilter();
-            path="http://192.168.15.232/Easytouriste_mobile/images/endroits/";
+           // path="http://192.168.15.232/Easytouriste_mobile/images/endroits/";
 
-         //path="http://192.168.142.108/Easytouriste_mobile/images/endroits/";
+         path="";
     }
 
     @Override

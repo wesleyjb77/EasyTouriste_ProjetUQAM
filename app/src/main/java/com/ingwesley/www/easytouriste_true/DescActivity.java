@@ -19,7 +19,8 @@ import com.bumptech.glide.Glide;
 import static java.net.Proxy.Type.HTTP;
 
 public class DescActivity extends AppCompatActivity {
-   String path="http://192.168.15.210/Easytouriste_mobile/images/endroits/";
+  // String path="http://192.168.15.210/Easytouriste_mobile/images/endroits/";
+  String path="";
    String TAG3="lolll";
     DatabaseHelper myDb;
     @Override
@@ -27,6 +28,8 @@ public class DescActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e(TAG3, "Destroy");
         setContentView(R.layout.activity_desc_endroit);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         final String id  = getIntent().getExtras().getString("id");
         myDb = new DatabaseHelper(this);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

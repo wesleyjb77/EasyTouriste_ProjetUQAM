@@ -4,8 +4,11 @@
 <string name="navigation_drawer_open">open</string>
 <string name="navigation_drawer_close">close</string>
 
-    <string name="path_fr2">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
-    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+    <string name="path_fr_all">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+    <string name="load"> \tLoading...</string>
+    <string name="search"> Search...</string>
+
     <!--Menu principal -->
     <string name="acceuil">Home</string>
     <string name="hebergement">Accommodation</string>
@@ -18,10 +21,9 @@
     <string name="meteo">Weather</string>
     <string name="suivez_nous">Follow us</string>
 
-
     <!--Menu secondaire -->
-    <string name="hotel">hotel</string>
-    <string name="auberge">hostel</string>
+    <string name="hotel">Hotel</string>
+    <string name="auberge">Hostel</string>
 
 
     <!--a visiter -->
@@ -37,7 +39,15 @@
     <string name="patisserie">Pastry</string>
     <!--A faire -->
     <string name="plage">Beach</string>
-    <string name="chute">waterfall</string>
+    <string name="chute">Waterfall</string>
+
+
+
+    <!--pager-->
+    <string name="culture">Culture</string>
+    <string name="histoire">History</string>
+
+
 
     <!--bottom menu-->
     <string name="menu_tous">All</string>
