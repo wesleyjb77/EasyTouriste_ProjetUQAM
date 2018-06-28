@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.Helpers;
 
 import android.content.ContentValues;
 import android.content.Context;

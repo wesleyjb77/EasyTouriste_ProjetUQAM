@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/labadee"
     android:gravity="center"
-    tools:context=".splash">
+    tools:context=".GUI.splash">
 
     <ProgressBar
         android:id="@+id/progressBar"

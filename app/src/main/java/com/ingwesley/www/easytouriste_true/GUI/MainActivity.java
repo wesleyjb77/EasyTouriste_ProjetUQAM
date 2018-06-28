@@ -1,11 +1,7 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.GUI;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,14 +20,12 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.ingwesley.www.easytouriste_true.All_Adapters.ExpandableAdapter;
 import com.ingwesley.www.easytouriste_true.All_Adapters.SlideAdapter;
-import com.ingwesley.www.easytouriste_true.All_Models.MenuNameProvider;
+import com.ingwesley.www.easytouriste_true.R;
 
 import java.net.InetAddress;
 import java.util.ArrayList;

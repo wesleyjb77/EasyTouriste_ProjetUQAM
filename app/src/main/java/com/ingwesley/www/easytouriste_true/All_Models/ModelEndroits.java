@@ -10,9 +10,9 @@ public class ModelEndroits {
     private String email;
     private String stars;
     private String prix;
-    private String id_cat;
+    private String nom_cat;
 
-    public ModelEndroits(String id, String nom, String illustration, String description, String adresse, String telephone, String email, String stars,String prix,String id_cat) {
+    public ModelEndroits(String id, String nom, String illustration, String description, String adresse, String telephone, String email, String stars,String prix,String nom_cat) {
         this.id = id;
         this.nom = nom;
         this.illustration = illustration;
@@ -21,6 +21,8 @@ public class ModelEndroits {
         this.telephone = telephone;
         this.email = email;
         this.stars = stars;
+        this.nom_cat=nom_cat;
+        this.prix=prix;
     }
 
     public String getId() {
@@ -103,11 +105,11 @@ public class ModelEndroits {
         this.prix = prix;
     }
 
-    public String getId_cat() {
-        return id_cat;
+    public String getNom_cat() {
+        return nom_cat;
     }
 
     public void setId_cat(String id_cat) {
-        this.id_cat = id_cat;
+        this.nom_cat = nom_cat;
     }
 }

@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.GUI;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,8 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.ingwesley.www.easytouriste_true.R;
 
 
 public class splash extends AppCompatActivity {

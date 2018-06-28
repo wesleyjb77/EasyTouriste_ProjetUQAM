@@ -14,7 +14,7 @@
 
 
 
-    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategoriesFR.php?id=</string>
     <string name="load"> \tChargement...</string>
     <string name="search">Rechercher...</string>
 

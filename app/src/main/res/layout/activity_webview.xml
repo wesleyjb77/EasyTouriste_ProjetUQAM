@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WebViewActivity">
+    tools:context=".GUI.WebViewActivity">
 
-    <include
-        android:id="@+id/toolbarWeb"
-        layout="@layout/toolbar"/>
+
     <WebView
         android:id="@+id/helpview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
 </LinearLayout>

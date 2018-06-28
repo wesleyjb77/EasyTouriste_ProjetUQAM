@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 
 import com.ingwesley.www.easytouriste_true.R;
-import com.ingwesley.www.easytouriste_true.WebViewActivity;
+import com.ingwesley.www.easytouriste_true.GUI.WebViewActivity;
 
 // for display the slide
 public class SlideAdapter extends PagerAdapter {

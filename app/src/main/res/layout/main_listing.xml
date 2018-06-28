@@ -7,12 +7,12 @@
     android:orientation="vertical"
     android:theme="@style/AppTheme.NoActionBar"
     app:ignore="NamespaceTypo"
-    app:context=".MainListing">
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    app:context=".GUI.MainListing">
 
+        <FrameLayout
+            android:id="@+id/toolbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
@@ -30,10 +30,10 @@
         app:searchCloseIcon="@drawable/ic_action_navigation_close_inverted"
         app:searchBackIcon="@drawable/ic_action_navigation_arrow_back_inverted"
         app:searchSuggestionIcon="@drawable/ic_suggestion"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHint="#FFFFFF"
         />
-    </android.support.design.widget.AppBarLayout>
+        </FrameLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/endroit_rec"
         android:layout_width="match_parent"

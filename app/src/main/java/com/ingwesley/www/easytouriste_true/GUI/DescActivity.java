@@ -1,13 +1,13 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.GUI;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
-import static java.net.Proxy.Type.HTTP;
+import com.ingwesley.www.easytouriste_true.Helpers.DatabaseHelper;
+import com.ingwesley.www.easytouriste_true.R;
 
 public class DescActivity extends AppCompatActivity {
   // String path="http://192.168.15.210/Easytouriste_mobile/images/endroits/";
@@ -28,8 +28,10 @@ public class DescActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.e(TAG3, "Destroy");
         setContentView(R.layout.activity_desc_endroit);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        Toolbar toolbar=findViewById(R.id.col_tool);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         final String id  = getIntent().getExtras().getString("id");
         myDb = new DatabaseHelper(this);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.GUI;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -13,8 +13,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ingwesley.www.easytouriste_true.All_Adapters.FavoritesAdapter;
-import com.ingwesley.www.easytouriste_true.All_Adapters.Listing_All_Adapter;
 import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
+import com.ingwesley.www.easytouriste_true.Helpers.DatabaseHelper;
+import com.ingwesley.www.easytouriste_true.R;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -44,7 +45,7 @@ public class FavoritesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         searchView = (MaterialSearchView)findViewById(R.id.search_view);
         myDb = new DatabaseHelper(this);
-listEndroitFav=new ArrayList<>();
+        listEndroitFav=new ArrayList<>();
         load_data_from_server("");
         recyclerView = (RecyclerView) findViewById(R.id.endroit_rec);
         adapter = new FavoritesAdapter(this, listEndroitFav);
@@ -62,30 +63,6 @@ listEndroitFav=new ArrayList<>();
         return true;
     }
 
-
-    public  void sortArray(){
-
-        for (ModelEndroits en : listEndroitFav) {
-            //System.out.println (en.getId());
-            if(myDb.checkUser(en.getId())){
-                ModelEndroits data = new ModelEndroits(
-                        en.getId(),
-                        en.getNom(),
-                        en.getIllustration(),
-                        en.getDescription(),
-                        en.getAdresse(),
-                        en.getTelephone(),
-                        en.getEmail(),
-                        en.getStars(),
-                        en.getPrix(),
-                        en.getId_cat()
-                );
-                listEndroitFav.add(data);
-
-
-            }
-        }
-    }
     public void onResume() {
         super.onResume();
         resetSearch();
@@ -140,7 +117,7 @@ listEndroitFav=new ArrayList<>();
                                     object.getString("email"),
                                     object.getString("stars"),
                                     object.getString("prix"),
-                                    object.getString("id_cat")
+                                    object.getString("nom_cat")
                             );
                             listEndroitFav.add(data);
                         }

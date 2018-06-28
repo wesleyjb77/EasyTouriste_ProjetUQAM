@@ -1,9 +1,7 @@
-package com.ingwesley.www.easytouriste_true;
+package com.ingwesley.www.easytouriste_true.GUI;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,10 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.ingwesley.www.easytouriste_true.All_Adapters.Listing_All_Adapter;
@@ -44,6 +42,7 @@ public class MainListing extends AppCompatActivity {
     RecyclerView recyclerView;
     Listing_All_Adapter adapter;
     MaterialSearchView searchView;
+    String suggestion[];
     private  static ArrayList<ModelEndroits> listEndroit;
 
     @Override
@@ -53,20 +52,22 @@ public class MainListing extends AppCompatActivity {
         Log.e(TAG1, "the probleme");
         Toolbar toolbar = findViewById(R.id.toolbar2);
         recyclerView = findViewById(R.id.endroit_rec);
-
         setSupportActionBar(toolbar);
         searchView = (MaterialSearchView)findViewById(R.id.search_view);
-       // searchView.setOnQueryTextListener((MaterialSearchView.OnQueryTextListener) this);
-        //toolbar.setTitleTextColor(Color.parseColor("#696969"));
-      toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
+       //searchView.setOnQueryTextListener((MaterialSearchView.OnQueryTextListener) this);
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+     // toolbar.setBackgroundColor(Color.parseColor("#FFFFFF"));
         listEndroit=new ArrayList<>();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         key=getIntent().getExtras().getString("key");
         load_data_from_server(key);
+        //searchView.setSuggestions(suggestion);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Listing_All_Adapter(this, listEndroit);
         recyclerView.setAdapter(adapter);
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,7 +95,6 @@ public class MainListing extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
 
@@ -137,11 +137,12 @@ public class MainListing extends AppCompatActivity {
                 try {
                     Response response = client.newCall(request).execute();
                     JSONArray array = new JSONArray(response.body().string());
-
+                    suggestion=new String[array.length()];
                     for (int i = 0; i < array.length(); i++) {
 
 
                         JSONObject object = array.getJSONObject(i);
+                        //suggestion[i]=object.getString("nom");
                         ModelEndroits data = new ModelEndroits(
                                 object.getString("id"),
                                 object.getString("nom"),
@@ -152,13 +153,11 @@ public class MainListing extends AppCompatActivity {
                                 object.getString("email"),
                                 object.getString("stars"),
                                 object.getString("prix"),
-                                object.getString("id_cat")
+                                object.getString("nom_cat")
                         );
                         listEndroit.add(data);
 
                     }
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -171,6 +170,7 @@ public class MainListing extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 adapter.notifyDataSetChanged();
+
                 pdLoading.dismiss();
               if(listEndroit==null){
 
@@ -182,7 +182,6 @@ public class MainListing extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
                 //this method will be running on UI thread
                 pdLoading.setMessage("\tLoading...");
                 pdLoading.setCancelable(false);
@@ -194,73 +193,14 @@ public class MainListing extends AppCompatActivity {
         task2.execute(id);
 
     }
-    private void loadFav(final String id) {
-
-        @SuppressLint("StaticFieldLeak") AsyncTask<String, Void, Void> task2 = new AsyncTask<String, Void, Void>() {
-            ProgressDialog pdLoading = new ProgressDialog(MainListing.this);
-            @Override
-            protected Void doInBackground(String... strings) {
-                String path="https://api.myjson.com/bins/13fbde";
-                OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder()
-                        .url(path+strings[0])
-                        .build();
-                //?id="+integers[0]
-                //listEndroit.removeAll(listEndroit);
-                try {
-                    Response response = client.newCall(request).execute();
-                    JSONArray array = new JSONArray(response.body().string());
-
-                    for (int i = 0; i < array.length(); i++) {
-
-
-                        JSONObject object = array.getJSONObject(i);
-                        ModelEndroits data = new ModelEndroits(
-                                object.getString("id"),
-                                object.getString("nom"),
-                                object.getString("url"),
-                                object.getString("description"),
-                                object.getString("adresse"),
-                                object.getString("telephone"),
-                                object.getString("email"),
-                                object.getString("stars"),
-                                object.getString("prix"),
-                                object.getString("id_cat")
-                        );
-                        listEndroit.add(data);
-
-                    }
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    System.out.println("End of content");
-                }
-                //onProgressUpdate();
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                pdLoading.dismiss();
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-                //this method will be running on UI thread
-                pdLoading.setMessage("\tLoading...");
-                pdLoading.setCancelable(false);
-                pdLoading.show();
-
-            }
-        };
-
-        task2.execute(id);
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -282,13 +222,18 @@ public class MainListing extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
+    @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+        if (searchView.isSearchOpen()) {
+            searchView.closeSearch();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 
-
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
+    }
 }
