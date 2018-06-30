@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,11 +23,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import com.ingwesley.www.easytouriste_true.All_Adapters.ExpandableAdapter;
-import com.ingwesley.www.easytouriste_true.All_Adapters.SlideAdapter;
+import com.ingwesley.www.easytouriste_true.adapters.ExpandableAdapter;
+import com.ingwesley.www.easytouriste_true.adapters.SectionsPageAdapter;
+import com.ingwesley.www.easytouriste_true.adapters.SlideAdapter;
 import com.ingwesley.www.easytouriste_true.R;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private Button mprev;
     private Button mNext;
     public int mCurPg;
+    SectionsPageAdapter sAdapter;
    Toolbar toolbar;
 
     @Override
@@ -83,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
         toolbar.setNavigationIcon(R.drawable.menu_icon);
         // getSupportActionBar().hide();
-        // rl_menu = findViewById(R.id.rl_menu);
         mListView = findViewById(R.id.activity_expandable_list_view);
         initData();
         mlistAdapter = new ExpandableAdapter(MainActivity.this, listDataHeader, listHash);
@@ -115,31 +115,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 viewPager.setCurrentItem(mCurPg - 1);
             }
         });
-/*
-        rl_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawerLayout.openDrawer(Gravity.LEFT);
-            }
-        });
-        */
     }
 
-    public Boolean isInternetConnected(){
-        boolean status = false;
-        try{
-            InetAddress address = InetAddress.getByName("192.168.15.1");
-
-            if(address!=null)
-            {
-                status = true;
-            }
-        }catch (Exception e) // Catch the exception
-        {
-            e.printStackTrace();
-        }
-        return status;
-    }
     private void setListViewHeight(ExpandableListView listView, int group) {
         ExpandableListAdapter listAdapter = listView.getExpandableListAdapter();
         int totalHeight = 0;
@@ -176,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.call_item,menu);
+        getMenuInflater().inflate(R.menu.location_item,menu);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -380,6 +359,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     MainActivity.this.startActivity(favIntent);
 
                 }
+                if (groupPosition==7){
+
+                  // Intent wtIntent = new Intent(MainActivity.this, MeteoActivity.class);
+                    //favIntent.putExtra("key", cat); //Optional parameters
+                    //MainActivity.this.startActivity(wtIntent);
+
+                }
                // if()
 
 
@@ -400,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void addDotsIndicator(int position) {
 
-        mDots = new TextView[2];
+        mDots = new TextView[3];
         mDotLayout.removeAllViews();
         for (int i = 0; i < mDots.length; i++) {
             mDots[i] = new TextView(this);

@@ -1,7 +1,8 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,9 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.ingwesley.www.easytouriste_true.All_Adapters.Listing_All_Adapter;
-import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
+import com.ingwesley.www.easytouriste_true.adapters.ListingAdapter;
 import com.ingwesley.www.easytouriste_true.R;
+import com.ingwesley.www.easytouriste_true.models.ModelEndroits;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -40,7 +41,7 @@ public class MainListing extends AppCompatActivity {
     String TAG1 = "MainListing";
     String key;
     RecyclerView recyclerView;
-    Listing_All_Adapter adapter;
+    ListingAdapter adapter;
     MaterialSearchView searchView;
     String suggestion[];
     private  static ArrayList<ModelEndroits> listEndroit;
@@ -64,7 +65,7 @@ public class MainListing extends AppCompatActivity {
         load_data_from_server(key);
         //searchView.setSuggestions(suggestion);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new Listing_All_Adapter(this, listEndroit);
+        adapter = new ListingAdapter(this, listEndroit);
         recyclerView.setAdapter(adapter);
 
 
@@ -85,7 +86,7 @@ public class MainListing extends AppCompatActivity {
             public void onSearchViewClosed() {
 
                 //If closed Search View , lstView will return default
-                adapter = new Listing_All_Adapter(MainListing.this, listEndroit);
+                adapter = new ListingAdapter(MainListing.this, listEndroit);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -111,7 +112,7 @@ public class MainListing extends AppCompatActivity {
                         }
                     }
 
-                    adapter = new Listing_All_Adapter(MainListing.this, filteredList);
+                    adapter = new ListingAdapter(MainListing.this, filteredList);
                     recyclerView.setAdapter(adapter);
                 }
                 return false;
@@ -170,13 +171,7 @@ public class MainListing extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 adapter.notifyDataSetChanged();
-
                 pdLoading.dismiss();
-              if(listEndroit==null){
-
-                  Toast.makeText(MainListing.this,"no data found", Toast.LENGTH_LONG);
-              }
-
             }
 
             @Override
@@ -193,6 +188,23 @@ public class MainListing extends AppCompatActivity {
         task2.execute(id);
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                String isFavChange = data.getStringExtra("isFavChange");
+                Toast.makeText(this, isFavChange, Toast.LENGTH_SHORT).show();
+                if (isFavChange.equals("1")){
+
+                    resetSearch();
+                }
+            }
+        }
+
+
+        }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -212,13 +224,13 @@ public class MainListing extends AppCompatActivity {
 
     public void onResume() {
         super.onResume();
-        resetSearch();
+       // resetSearch();
 
     }
 
 
     public void resetSearch() {
-        adapter = new Listing_All_Adapter(this, listEndroit);
+        adapter = new ListingAdapter(this, listEndroit);
         recyclerView.setAdapter(adapter);
 
     }

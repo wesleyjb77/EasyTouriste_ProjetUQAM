@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.ingwesley.www.easytouriste_true.Helpers.DatabaseHelper;
+import com.ingwesley.www.easytouriste_true.helpers.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.R;
 
 public class DescActivity extends AppCompatActivity {
@@ -23,6 +23,7 @@ public class DescActivity extends AppCompatActivity {
   String path="";
    String TAG3="lolll";
     DatabaseHelper myDb;
+    String isFavChange;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,16 @@ public class DescActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                onBackPressed();
+            }
+        });
+
+
         final String id  = getIntent().getExtras().getString("id");
         myDb = new DatabaseHelper(this);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -41,21 +52,22 @@ public class DescActivity extends AppCompatActivity {
         else {
             fab.setImageResource(R.drawable.ic_unfavorite);
         }
+        isFavChange="0";
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                boolean bool=myDb.checkUser(id);
-                // Snackbar.make(view, "Remove "+bool, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+               isFavChange="1";
 
                 if (bool==false) {
                     myDb.insertData(id);
-                    Snackbar.make(view, "add"+id, Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Snackbar.make(view, getString(R.string.ajouter_fav), Snackbar.LENGTH_LONG).setAction("Action", null).show();
                     fab.setImageResource(R.drawable.ic_favorite);
                 }
                 else {
                     myDb.deleteData(id);
-                    Snackbar.make(view, "Remove", Snackbar.LENGTH_LONG).setAction("Action1", null).show();
+                    Snackbar.make(view, getString(R.string.enlever_fav), Snackbar.LENGTH_LONG).setAction("Action1", null).show();
                     fab.setImageResource(R.drawable.ic_unfavorite);
 
                 }
@@ -73,11 +85,12 @@ public class DescActivity extends AppCompatActivity {
 
         String nom = getIntent().getExtras().getString("nom");
         final String adresse = getIntent().getExtras().getString("adresse") ;
-        //String categorie = getIntent().getExtras().getString("categorie");
+         String nom_cat = getIntent().getExtras().getString("nom_cat");
         final String mail = getIntent().getExtras().getString("mail");
         String img = getIntent().getExtras().getString("img");
         String description = getIntent().getExtras().getString("description") ;
-        final String telephone = getIntent().getExtras().getString("telephone") ;
+        final String telephone = getIntent().getExtras().getString("telephone");
+        String prix = getIntent().getExtras().getString("prix");
         //final String telephone = "37726106" ;
 
         //action
@@ -86,7 +99,6 @@ public class DescActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (mail!=null){
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
-// The intent does not have a URI, so declare the "text/plain" MIME type
                     emailIntent.setType("text/html");
                     emailIntent.putExtra(Intent.EXTRA_EMAIL, mail);
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "");
@@ -128,24 +140,51 @@ public class DescActivity extends AppCompatActivity {
         TextView tv_desc=findViewById(R.id.description_endroit);
         TextView tv_cat=findViewById(R.id.categorie_endroit);
         TextView tv_mail=findViewById(R.id.email_endroit);
-        TextView tv_tel=findViewById(R.id.telephone_endroits);
+        TextView tv_tel=findViewById(R.id.telephone_endroit);
         TextView tv_ad=findViewById(R.id.adresse_endroit);
+        TextView tv_prix=findViewById(R.id.prix);
         ImageView img_end=findViewById(R.id.image_endroit);
+
 
         //tv_desc.setText(nom);
         //tv_categorie.setText(categorie);
+        if(prix.equals("0") || prix.equals("")){
+
+            tv_prix.setText("N/A");
+
+        }else {
+
+            tv_prix.setText(prix);
+        }
 
         tv_desc.setText(description);
-        tv_mail.setText(mail);
+
+        if(mail.equals("0") || mail.equals("")){
+
+            tv_mail.setText("N/A");
+
+        }else {
+
+            tv_mail.setText(mail);
+        }
+
+
         tv_tel.setText(telephone);
         tv_ad.setText(adresse);
+        tv_cat.setText(nom_cat);
         Glide.with(this).load(path+img).into(img_end);
         collapsingToolbarLayout.setTitle(nom);
 
+    }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //Intent intent = new Intent();
+        //intent.putExtra("isFavChange", isFavChange);
+       // Toast.makeText(this, isFavChange, Toast.LENGTH_SHORT).show();
+        //setResult(RESULT_OK, intent);
+        finish();
 
     }
 }

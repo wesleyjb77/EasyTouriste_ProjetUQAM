@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.All_Models;
+package com.ingwesley.www.easytouriste_true.models;
 
 import android.provider.BaseColumns;
 

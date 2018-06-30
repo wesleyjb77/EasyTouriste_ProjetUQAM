@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:theme="@style/AppTheme.NoActionBar"
     app:ignore="NamespaceTypo"
-    app:context=".GUI.MainListing">
+    app:context=".gui.MainListing">
 
         <FrameLayout
             android:id="@+id/toolbar_container"

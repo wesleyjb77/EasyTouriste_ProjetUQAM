@@ -1,8 +1,7 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 
 import com.ingwesley.www.easytouriste_true.R;

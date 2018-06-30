@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/suivez_nous"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="10dp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:paddingStart="10dp">
+    <ImageView
+        android:id="@+id/ic_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_facebook"/>
+
+    <ImageView
+        android:id="@+id/ic_google_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_google_plus"/>
+
+    <ImageView
+        android:id="@+id/ic_instagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_instagram" />
+    <ImageView
+        android:id="@+id/ic_linked_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_linkedin"
+        />
+</LinearLayout>
+
+</LinearLayout>

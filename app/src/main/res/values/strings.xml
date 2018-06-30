@@ -6,15 +6,34 @@
 
 
 
+    <string name="change_city">Change city</string>
+
+    <!-- Put your own APP ID here -->
+    <string name="open_weather_maps_app_id">12345</string>
+
+    <string name="weather_sunny">&#xf00d;</string>
+    <string name="weather_clear_night">&#xf02e;</string>
+
+    <string name="weather_foggy">&#xf014;</string>
+    <string name="weather_cloudy">&#xf013;</string>
+    <string name="weather_rainy">&#xf019;</string>
+    <string name="weather_snowy">&#xf01b;</string>
+    <string name="weather_thunder">&#xf01e;</string>
+    <string name="weather_drizzle">&#xf01c;</string>
+
+    <string name="place_not_found">Sorry, no weather data found.</string>
+
     <string name="path_fr_all">http://192.168.15.233/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
 
     <string name="path_fr1">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
     <string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
+    <string name="follow">Suivez-Nous</string>
 
 
+    <string name="ajouter_fav">Favori ajouté</string>
+    <string name="enlever_fav">Favori enlevé</string>
 
-
-    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/GetInstitionByCategories.php?id=</string>
     <string name="load"> \tChargement...</string>
     <string name="search">Rechercher...</string>
 
@@ -29,6 +48,7 @@
     <string name="restauration">Restauration</string>
     <string name="meteo">Meteo</string>
     <string name="suivez_nous">Suivez nous</string>
+    <string name="favoris">Favoris</string>
 
 
     <!--Menu secondaire -->
@@ -60,6 +80,9 @@
     <string name="menu_tous">Tous</string>
     <string name="menu_meilleurs">Plus Visités</string>
     <string name="menu_favoris">Favoris</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

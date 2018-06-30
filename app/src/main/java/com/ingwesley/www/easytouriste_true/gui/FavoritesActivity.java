@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -10,12 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.ingwesley.www.easytouriste_true.All_Adapters.FavoritesAdapter;
-import com.ingwesley.www.easytouriste_true.All_Models.ModelEndroits;
-import com.ingwesley.www.easytouriste_true.Helpers.DatabaseHelper;
+import com.ingwesley.www.easytouriste_true.adapters.FavoritesAdapter;
+import com.ingwesley.www.easytouriste_true.helpers.DatabaseHelper;
 import com.ingwesley.www.easytouriste_true.R;
+import com.ingwesley.www.easytouriste_true.models.ModelEndroits;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -139,10 +138,6 @@ public class FavoritesActivity extends AppCompatActivity {
             protected void onPostExecute(Void aVoid) {
                 adapter.notifyDataSetChanged();
                 pdLoading.dismiss();
-                if (listEndroitFav == null) {
-
-                    Toast.makeText(FavoritesActivity.this, "no data found", Toast.LENGTH_LONG);
-                }
 
             }
 

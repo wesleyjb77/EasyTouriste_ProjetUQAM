@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.Helpers;
+package com.ingwesley.www.easytouriste_true.helpers;
 
 
 import android.annotation.SuppressLint;

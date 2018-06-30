@@ -3,12 +3,14 @@
 
 <string name="navigation_drawer_open">open</string>
 <string name="navigation_drawer_close">close</string>
+    <string name="follow">Follow Us</string>
 
-    <string name="path_fr_all">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
-    <string name="path_fr">http://192.168.15.232/Easytouriste_mobile/functions/GetInstitionByCategoriesEN.php?id=</string>
+    <string name="path_fr_all">http://192.168.15.233/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
+    <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategoriesEN.php?id=</string>
     <string name="load"> \tLoading...</string>
     <string name="search"> Search...</string>
-
+    <string name="ajouter_fav">Favorite add</string>
+    <string name="enlever_fav">Favorite remove</string>
     <!--Menu principal -->
     <string name="acceuil">Home</string>
     <string name="hebergement">Accommodation</string>

@@ -112,12 +112,15 @@
                 android:layout_marginTop="5dp"
                 android:id="@+id/email_endroit"/>
             <TextView
+                android:id="@+id/prix"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="telephone_endroit"
+                android:text="prix"
                 android:layout_marginTop="5dp"
-                android:id="@+id/telephone_endroits"/>
+                />
+
             <TextView
+                android:id="@+id/telephone_endroit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="telephone_endroit"

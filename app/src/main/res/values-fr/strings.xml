@@ -5,16 +5,16 @@
     <string name="navigation_drawer_close">close</string>
 
 
-
+    <string name="follow">Suivez-Nous</string>
     <string name="path_fr_all">http://192.168.15.233/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
 
     <string name="path_fr1">http://192.168.15.232/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
     <string name="path_fr2">http://192.168.142.108/Easytouriste_mobile/functions/fr/GetAllEndroits.php</string>
-
-
-
-
     <string name="path_fr">http://192.168.15.233/Easytouriste_mobile/functions/GetInstitionByCategoriesFR.php?id=</string>
+
+    <string name="ajouter_fav">Favori ajouté</string>
+    <string name="enlever_fav">Favori enlevé</string>
+
     <string name="load"> \tChargement...</string>
     <string name="search">Rechercher...</string>
 
@@ -29,6 +29,7 @@
     <string name="restauration">Restauration</string>
     <string name="meteo">Meteo</string>
     <string name="suivez_nous">Suivez nous</string>
+    <string name="favoris">Favoris</string>
 
 
     <!--Menu secondaire -->

@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.Helpers;
+package com.ingwesley.www.easytouriste_true.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-import com.ingwesley.www.easytouriste_true.All_Models.DbColumn;
+import com.ingwesley.www.easytouriste_true.models.DbColumn;
 
 import static android.provider.BaseColumns._ID;
 

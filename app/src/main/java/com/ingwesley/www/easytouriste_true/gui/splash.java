@@ -1,4 +1,4 @@
-package com.ingwesley.www.easytouriste_true.GUI;
+package com.ingwesley.www.easytouriste_true.gui;
 
 import android.content.Intent;
 import android.os.Handler;
